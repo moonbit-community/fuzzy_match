@@ -1,0 +1,37 @@
+package illusory0x0/fuzzy_match
+
+alias @moonbitlang/core/string as @string
+
+// Values
+fn is_match[Pattern : StringLike, Text : StringLike](char_equal~ : (Char, Char) -> Bool = .., pattern~ : Pattern, text~ : Text) -> Bool
+
+fn score_upper_bound(query_length~ : Int) -> Int
+
+// Types and methods
+type CharClass
+
+type Query
+impl Query {
+  matching_indices[Item : StringLike](Self, item~ : Item) -> Array[Int]?
+  new(String) -> Self
+  score[Item : StringLike](Self, item~ : Item) -> Int
+  search[Item : StringLike + Compare](Self, items~ : Array[Item]) -> Array[@string.StringView]
+  split_by_matching_sections[Item : StringLike](Self, item~ : Item) -> Array[(Bool, @string.StringView)]?
+}
+
+type StartEndIndices
+
+// Type aliases
+
+// Traits
+pub(open) trait StringLike {
+  length(Self) -> Int
+  op_get(Self, Int) -> Char
+  is_empty(Self) -> Bool
+  to_string(Self) -> String
+  op_as_view(Self, Int, Int) -> @string.StringView
+}
+impl StringLike::is_empty
+impl StringLike for String
+impl StringLike for @string.StringView
+

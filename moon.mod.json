@@ -1,10 +1,14 @@
 {
-  "name": "illusory0x0/hello",
+  "name": "illusory0x0/fuzzy_match",
   "version": "0.1.0",
   "readme": "README.md",
-  "repository": "",
+  "repository": "https://github.com/moonbit-community/fuzzy_match",
   "license": "Apache-2.0",
-  "keywords": [],
-  "description": "",
+  "keywords": [
+    "fuzzy_match",
+    "fuzzy_search",
+    "string"
+  ],
+  "description": "A library for fuzzy string matching and fuzzy string searching",
   "source": "src"
 }

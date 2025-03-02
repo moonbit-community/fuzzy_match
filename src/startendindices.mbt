@@ -1,5 +1,5 @@
 ///|
-struct StartEndIndices {
+priv struct StartEndIndices {
   mut found : Bool
   mut start_idx : Int
   mut end_idx : Int

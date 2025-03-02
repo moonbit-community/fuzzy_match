@@ -1,5 +1,5 @@
 ///|
-enum CharClass {
+priv enum CharClass {
   Upper
   Lower
   Digit

@@ -8,8 +8,6 @@ fn is_match[Pattern : StringLike, Text : StringLike](char_equal~ : (Char, Char) 
 fn score_upper_bound(query_length~ : Int) -> Int
 
 // Types and methods
-type CharClass
-
 type Query
 impl Query {
   matching_indices[Item : StringLike](Self, item~ : Item) -> Array[Int]?
@@ -18,8 +16,6 @@ impl Query {
   search[Item : StringLike + Compare](Self, items~ : Array[Item]) -> Array[@string.StringView]
   split_by_matching_sections[Item : StringLike](Self, item~ : Item) -> Array[(Bool, @string.StringView)]?
 }
-
-type StartEndIndices
 
 // Type aliases
 

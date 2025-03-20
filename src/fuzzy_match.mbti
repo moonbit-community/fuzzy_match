@@ -5,7 +5,15 @@ alias @moonbitlang/core/string as @string
 // Values
 fn is_match[Pattern : StringLike, Text : StringLike](char_equal~ : (Char, Char) -> Bool = .., pattern~ : Pattern, text~ : Text) -> Bool
 
+fn matching_indices[Item : StringLike](Query, item~ : Item) -> Array[Int]?
+
+fn score[Item : StringLike](Query, item~ : Item) -> Int
+
 fn score_upper_bound(query_length~ : Int) -> Int
+
+fn search[Item : StringLike + Compare](Query, items~ : Array[Item]) -> Array[@string.StringView]
+
+fn split_by_matching_sections[Item : StringLike](Query, item~ : Item) -> Array[(Bool, @string.StringView)]?
 
 // Types and methods
 type Query

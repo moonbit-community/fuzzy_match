@@ -1,6 +1,8 @@
-package illusory0x0/fuzzy_match
+package "illusory0x0/fuzzy_match"
 
-alias @moonbitlang/core/string as @string
+import(
+  "moonbitlang/core/string"
+)
 
 // Values
 fn is_match[Pattern : StringLike, Text : StringLike](char_equal~ : (Char, Char) -> Bool = .., pattern~ : Pattern, text~ : Text) -> Bool

@@ -33,9 +33,8 @@ pub(open) trait StringLike {
   op_get(Self, Int) -> Char
   is_empty(Self) -> Bool
   to_string(Self) -> String
-  op_as_view(Self, Int, Int) -> @string.StringView
+  view(Self, Int, Int) -> @string.StringView
 }
 impl StringLike::is_empty
 impl StringLike for String
-impl StringLike for @string.StringView
 

@@ -24,13 +24,11 @@ pub fn split_by_matching_sections[Item : StringLike](
 ) -> Array[(Bool, @string.View)]? {
   match matching_indices(self, item~) {
     None => None
-    Some([]) => Some([(not_matching, item.op_as_view(0, item.length()))])
+    Some([]) => Some([(not_matching, item.view(0, item.length()))])
     Some(matches) => {
       let sections = @deque.new()
       fn add_section(matching, start, end_inclusive) {
-        sections.push_back(
-          (matching, item.op_as_view(start, end_inclusive + 1)),
-        )
+        sections.push_back((matching, item.view(start, end_inclusive + 1)))
       }
 
       let first = matches[0]
@@ -73,7 +71,7 @@ pub fn search[Item : StringLike + Compare](
   items_by_score.sort()
   items_by_score.map(fn(t) {
     let item = t.2
-    item.op_as_view(0, item.length())
+    item.view(0, item.length())
   })
 }
 

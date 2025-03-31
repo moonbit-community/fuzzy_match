@@ -31,7 +31,7 @@ test "is_match" {
   inspect!(is_match(pattern="ab", text="abadwefe"), content="true")
 }
 
-///|
-test "@string.View" {
-  inspect!(is_match(pattern="ab", text="abadwefe"[0:-1]), content="true")
-}
+// ///|
+// test "@string.View" {
+//   inspect!(is_match(pattern="ab", text="abadwefe"[0:-1]), content="true")
+// }

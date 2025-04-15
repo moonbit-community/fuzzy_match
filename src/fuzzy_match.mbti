@@ -33,10 +33,9 @@ impl Query {
 pub(open) trait StringLike {
   length(Self) -> Int
   op_get(Self, Int) -> Char
-  is_empty(Self) -> Bool
+  is_empty(Self) -> Bool = _
   to_string(Self) -> String
   view(Self, Int, Int) -> @string.StringView
 }
-impl StringLike::is_empty
 impl StringLike for String
 

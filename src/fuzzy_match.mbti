@@ -38,4 +38,5 @@ pub(open) trait StringLike {
   view(Self, Int, Int) -> @string.StringView
 }
 impl StringLike for String
+impl StringLike for @string.StringView
 

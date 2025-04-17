@@ -2,19 +2,19 @@
 pub(open) trait StringLike {
   length(Self) -> Int
   op_get(Self, Int) -> Char
-  is_empty(Self) -> Bool
+  is_empty(Self) -> Bool = _
   to_string(Self) -> String
   view(Self, Int, Int) -> @string.StringView
 }
 
 ///|
 pub impl StringLike for String with length(self) {
-  self.length()
+  self.char_length()
 }
 
 ///|
 pub impl StringLike for String with op_get(self, index) {
-  self[index]
+  self.char_at(index)
 }
 
 ///|
@@ -32,21 +32,22 @@ pub impl StringLike for String with view(self, start, end) {
   self.view(start_offset=start, end_offset=end)
 }
 
-// ///|
-// pub impl StringLike for @string.View with length(self) {
-//   self.length()
-// }
+///|
+pub impl StringLike for @string.View with length(self) {
+  self.char_length()
+}
 
-// ///|
-// pub impl StringLike for @string.View with op_get(self, index) {
-//   self[index]
-// }
-// ///|
-// pub impl StringLike for @string.View with op_as_view(self, start, end) {
-//   self[start:end]
-// }
+///|
+pub impl StringLike for @string.View with op_get(self, index) {
+  self.char_at(index)
+}
 
-// ///|
-// pub impl StringLike for @string.View with to_string(self) {
-//   self.to_string()
-// }
+///|
+pub impl StringLike for @string.View with view(self, start, end) {
+  self.view(start_offset=start, end_offset=end)
+}
+
+///|
+pub impl StringLike for @string.View with to_string(self) {
+  self.to_string()
+}

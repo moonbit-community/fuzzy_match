@@ -12,7 +12,11 @@ fn Query::is_empty(self : Query) -> Bool {
 
 ///|
 pub fn Query::new(query : String) -> Query {
-  let queries = query.split(" ").filter(fn(s) { s.is_empty() |> not }).collect()
+  let queries = query
+    .split(" ")
+    .filter(fn(s) { s.is_empty() |> not })
+    .map(@string.View::to_string)
+    .collect()
   let case_sensitive = query.iter().any(@char.is_ascii_uppercase)
   { queries, raw: query, case_sensitive }
 }

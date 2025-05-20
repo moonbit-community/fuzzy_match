@@ -38,10 +38,4 @@ let not_matching = false
 let matching = true
 
 ///|
-fn max(a : Int, b : Int) -> Int {
-  if a > b {
-    a
-  } else {
-    b
-  }
-}
+fnalias @math.maximum as max

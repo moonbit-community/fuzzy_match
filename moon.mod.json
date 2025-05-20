@@ -4,11 +4,7 @@
   "readme": "README.md",
   "repository": "https://github.com/moonbit-community/fuzzy_match",
   "license": "Apache-2.0",
-  "keywords": [
-    "fuzzy_match",
-    "fuzzy_search",
-    "string"
-  ],
+  "keywords": ["fuzzy_match", "fuzzy_search", "string"],
   "description": "A library for fuzzy string matching and fuzzy string searching",
   "source": "src"
 }

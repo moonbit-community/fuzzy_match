@@ -97,7 +97,8 @@ pub fn matching_indices[Item : StringLike](
         set,
         query
       ) {
-        set..add(query)
+        set.add(query)
+        set
       })
     })
     if indices.is_empty() {

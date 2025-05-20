@@ -1,7 +1,7 @@
 ///|
 fn lowercase(ch : Char) -> Char {
   match ch {
-    'A'..='Z' => ch.to_int() + 32 |> Char::from_int
+    'A'..='Z' => ch.to_int() + 32 |> Int::unsafe_to_char
     _ => ch
   }
 }

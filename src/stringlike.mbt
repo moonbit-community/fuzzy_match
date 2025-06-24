@@ -4,7 +4,7 @@ pub(open) trait StringLike {
   op_get(Self, Int) -> Char
   is_empty(Self) -> Bool = _
   to_string(Self) -> String
-  view(Self, Int, Int) -> @string.StringView
+  view(Self, Int, Int) -> @string.View
 }
 
 ///|

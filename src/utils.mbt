@@ -1,29 +1,29 @@
 ///|
 fn lowercase(ch : Char) -> Char {
   match ch {
-    'A'..='Z' => ch.to_int() + 32 |> Int::unsafe_to_char
+    'A'..='Z' => (ch.to_int() + 32) |> Int::unsafe_to_char
     _ => ch
   }
 }
 
 ///|
 test "lowercase/basic" {
-  inspect!(lowercase('A'), content="a")
-  inspect!(lowercase('B'), content="b")
-  inspect!(lowercase('Z'), content="z")
+  inspect(lowercase('A'), content="a")
+  inspect(lowercase('B'), content="b")
+  inspect(lowercase('Z'), content="z")
 }
 
 ///|
 test "lowercase/already_lowercase" {
-  inspect!(lowercase('a'), content="a")
-  inspect!(lowercase('z'), content="z")
+  inspect(lowercase('a'), content="a")
+  inspect(lowercase('z'), content="z")
 }
 
 ///|
 test "lowercase/non_alpha" {
-  inspect!(lowercase('1'), content="1")
-  inspect!(lowercase('!'), content="!")
-  inspect!(lowercase(' '), content=" ")
+  inspect(lowercase('1'), content="1")
+  inspect(lowercase('!'), content="!")
+  inspect(lowercase(' '), content=" ")
 }
 
 ///|
@@ -38,4 +38,10 @@ let not_matching = false
 let matching = true
 
 ///|
-fnalias @math.maximum as max
+fn[T : Compare] max(x : T, y : T) -> T {
+  if x > y {
+    x
+  } else {
+    y
+  }
+}

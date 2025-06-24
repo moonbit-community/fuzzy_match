@@ -1,5 +1,5 @@
 ///|
-fn find_start_end_indices[Query : StringLike, Item : StringLike](
+fn[Query : StringLike, Item : StringLike] find_start_end_indices(
   query~ : Query,
   item~ : Item
 ) -> StartEndIndices {
@@ -33,7 +33,7 @@ fn find_start_end_indices[Query : StringLike, Item : StringLike](
 }
 
 ///|
-fn fold_matching_indices_single_query[A, Query : StringLike, Item : StringLike](
+fn[A, Query : StringLike, Item : StringLike] fold_matching_indices_single_query(
   query : Query,
   item~ : Item,
   init~ : A,
@@ -54,7 +54,7 @@ fn fold_matching_indices_single_query[A, Query : StringLike, Item : StringLike](
 }
 
 ///|
-fn score_single_query[Query : StringLike, Item : StringLike](
+fn[Query : StringLike, Item : StringLike] score_single_query(
   query : Query,
   item~ : Item,
   case_sensitive~ : Bool

@@ -2,7 +2,7 @@
 /// 
 /// This implementation refers to 
 /// [Ocaml janestreet fuzzy_match](https://github.com/janestreet/fuzzy_match/blob/master/match/src/fuzzy_match.ml)
-pub fn is_match[Pattern : StringLike, Text : StringLike](
+pub fn[Pattern : StringLike, Text : StringLike] is_match(
   char_equal~ : (Char, Char) -> Bool = Char::op_equal,
   pattern~ : Pattern,
   text~ : Text

@@ -5,27 +5,17 @@ import(
 )
 
 // Values
-fn is_match[Pattern : StringLike, Text : StringLike](char_equal~ : (Char, Char) -> Bool = .., pattern~ : Pattern, text~ : Text) -> Bool
-
-fn matching_indices[Item : StringLike](Query, item~ : Item) -> Array[Int]?
-
-fn score[Item : StringLike](Query, item~ : Item) -> Int
+fn[Pattern : StringLike, Text : StringLike] is_match(char_equal~ : (Char, Char) -> Bool = .., pattern~ : Pattern, text~ : Text) -> Bool
 
 fn score_upper_bound(query_length~ : Int) -> Int
 
-fn search[Item : StringLike + Compare](Query, items~ : Array[Item]) -> Array[@string.StringView]
-
-fn split_by_matching_sections[Item : StringLike](Query, item~ : Item) -> Array[(Bool, @string.StringView)]?
-
 // Types and methods
 type Query
-impl Query {
-  matching_indices[Item : StringLike](Self, item~ : Item) -> Array[Int]?
-  new(String) -> Self
-  score[Item : StringLike](Self, item~ : Item) -> Int
-  search[Item : StringLike + Compare](Self, items~ : Array[Item]) -> Array[@string.StringView]
-  split_by_matching_sections[Item : StringLike](Self, item~ : Item) -> Array[(Bool, @string.StringView)]?
-}
+fn[Item : StringLike] Query::matching_indices(Self, item~ : Item) -> Array[Int]?
+fn Query::new(String) -> Self
+fn[Item : StringLike] Query::score(Self, item~ : Item) -> Int
+fn[Item : StringLike + Compare] Query::search(Self, items~ : Array[Item]) -> Array[@string.StringView]
+fn[Item : StringLike] Query::split_by_matching_sections(Self, item~ : Item) -> Array[(Bool, @string.StringView)]?
 
 // Type aliases
 

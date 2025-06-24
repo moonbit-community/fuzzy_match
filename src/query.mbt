@@ -22,16 +22,16 @@ pub fn Query::new(query : String) -> Query {
       }
     })
     .collect()
-  let case_sensitive = query.iter().any(@char.is_ascii_uppercase)
+  let case_sensitive = query.iter().any(Char::is_ascii_uppercase)
   { queries, raw: query, case_sensitive }
 }
 
 ///|
-pub fn split_by_matching_sections[Item : StringLike](
+pub fn[Item : StringLike] split_by_matching_sections(
   self : Query,
   item~ : Item
 ) -> Array[(Bool, @string.View)]? {
-  match matching_indices(self, item~) {
+  match Query::matching_indices(self, item~) {
     None => None
     Some([]) => Some([(not_matching, item.view(0, item.length()))])
     Some(matches) => {
@@ -67,12 +67,12 @@ pub fn split_by_matching_sections[Item : StringLike](
 ///   
 /// This implementation refers to 
 /// [Ocaml janestreet fuzzy_match](https://github.com/janestreet/fuzzy_match/blob/master/search/src/fuzzy_search.ml)
-pub fn search[Item : StringLike + Compare](
+pub fn[Item : StringLike + Compare] search(
   self : Query,
   items~ : Array[Item]
 ) -> Array[@string.View] {
   let items_by_score = items.filter_map(fn(item) {
-    match score(self, item~) {
+    match Query::score(self, item~) {
       0 => None
       score => Some((score, item.length(), item))
     }
@@ -85,7 +85,7 @@ pub fn search[Item : StringLike + Compare](
 }
 
 ///|
-pub fn matching_indices[Item : StringLike](
+pub fn[Item : StringLike] matching_indices(
   self : Query,
   item~ : Item
 ) -> Array[Int]? {
@@ -110,7 +110,7 @@ pub fn matching_indices[Item : StringLike](
 }
 
 ///|
-pub fn score[Item : StringLike](self : Query, item~ : Item) -> Int {
+pub fn[Item : StringLike] score(self : Query, item~ : Item) -> Int {
   match (item.is_empty(), self.is_empty()) {
     (true, _) => 0
     (_, true) => 1

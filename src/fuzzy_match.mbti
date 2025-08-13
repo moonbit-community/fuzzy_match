@@ -1,3 +1,4 @@
+// Generated using `moon info`, DON'T EDIT IT
 package "illusory0x0/fuzzy_match"
 
 import(
@@ -5,9 +6,11 @@ import(
 )
 
 // Values
-fn[Pattern : StringLike, Text : StringLike] is_match(char_equal~ : (Char, Char) -> Bool = .., pattern~ : Pattern, text~ : Text) -> Bool
+fn[Pattern : StringLike, Text : StringLike] is_match(char_equal? : (Char, Char) -> Bool, pattern~ : Pattern, text~ : Text) -> Bool
 
 fn score_upper_bound(query_length~ : Int) -> Int
+
+// Errors
 
 // Types and methods
 type Query

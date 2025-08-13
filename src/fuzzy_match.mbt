@@ -5,7 +5,7 @@
 pub fn[Pattern : StringLike, Text : StringLike] is_match(
   char_equal~ : (Char, Char) -> Bool = Char::op_equal,
   pattern~ : Pattern,
-  text~ : Text
+  text~ : Text,
 ) -> Bool {
   let mut pattern_idx = 0
   let mut text_idx = 0

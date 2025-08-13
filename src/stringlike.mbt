@@ -14,7 +14,7 @@ pub impl StringLike for String with length(self) {
 
 ///|
 pub impl StringLike for String with op_get(self, index) {
-  self.char_at(index)
+  self.get_char(index).unwrap()
 }
 
 ///|
@@ -39,7 +39,7 @@ pub impl StringLike for @string.View with length(self) {
 
 ///|
 pub impl StringLike for @string.View with op_get(self, index) {
-  self.char_at(index)
+  self.get_char(index).unwrap()
 }
 
 ///|

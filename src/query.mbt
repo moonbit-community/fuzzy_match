@@ -29,7 +29,7 @@ pub fn Query::new(query : String) -> Query {
 ///|
 pub fn[Item : StringLike] split_by_matching_sections(
   self : Query,
-  item~ : Item
+  item~ : Item,
 ) -> Array[(Bool, @string.View)]? {
   match Query::matching_indices(self, item~) {
     None => None
@@ -69,7 +69,7 @@ pub fn[Item : StringLike] split_by_matching_sections(
 /// [Ocaml janestreet fuzzy_match](https://github.com/janestreet/fuzzy_match/blob/master/search/src/fuzzy_search.ml)
 pub fn[Item : StringLike + Compare] search(
   self : Query,
-  items~ : Array[Item]
+  items~ : Array[Item],
 ) -> Array[@string.View] {
   let items_by_score = items.filter_map(fn(item) {
     match Query::score(self, item~) {
@@ -87,7 +87,7 @@ pub fn[Item : StringLike + Compare] search(
 ///|
 pub fn[Item : StringLike] matching_indices(
   self : Query,
-  item~ : Item
+  item~ : Item,
 ) -> Array[Int]? {
   if self.is_empty() {
     Some([])
@@ -95,7 +95,7 @@ pub fn[Item : StringLike] matching_indices(
     let indices = self.queries.fold(init=Set::new(), fn(set, query) {
       fold_matching_indices_single_query(query, item~, init=set, f=fn(
         set,
-        query
+        query,
       ) {
         set.add(query)
         set

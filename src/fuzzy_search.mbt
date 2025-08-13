@@ -1,7 +1,7 @@
 ///|
 fn[Query : StringLike, Item : StringLike] find_start_end_indices(
   query~ : Query,
-  item~ : Item
+  item~ : Item,
 ) -> StartEndIndices {
   let dst = the_one_and_only
   let mut item_idx = 0
@@ -37,7 +37,7 @@ fn[A, Query : StringLike, Item : StringLike] fold_matching_indices_single_query(
   query : Query,
   item~ : Item,
   init~ : A,
-  f~ : (A, Int) -> A
+  f~ : (A, Int) -> A,
 ) -> A {
   let { start_idx, end_idx, found } = find_start_end_indices(query~, item~)
   let mut acc = init
@@ -57,7 +57,7 @@ fn[A, Query : StringLike, Item : StringLike] fold_matching_indices_single_query(
 fn[Query : StringLike, Item : StringLike] score_single_query(
   query : Query,
   item~ : Item,
-  case_sensitive~ : Bool
+  case_sensitive~ : Bool,
 ) -> Int {
   let { found, start_idx, end_idx } = find_start_end_indices(query~, item~)
   if not(found) {

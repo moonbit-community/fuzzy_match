@@ -38,9 +38,9 @@ test "search" {
   let items = ["___abc___", "aBc", "Abc_defgh", "abc", "foof"]
   inspect(
     Query::search(Query::new("abc"), items~),
-    content=
+    content=(
       $|[\"aBc\", \"abc\", \"Abc_defgh\", \"___abc___\"]
-    ,
+    ),
   )
 }
 
@@ -48,20 +48,20 @@ test "search" {
 test "split_by_matching_sections" {
   inspect(
     Query::split_by_matching_sections(Query::new("foo"), item="foo bar baz"),
-    content=
+    content=(
       $|Some([(true, \"foo\"), (false, \" bar baz\")])
-    ,
+    ),
   )
   inspect(
     Query::split_by_matching_sections(Query::new("abc"), item="____abc____"),
-    content=
+    content=(
       $|Some([(false, \"____\"), (true, \"abc\"), (false, \"____\")])
-    ,
+    ),
   )
   inspect(
     Query::split_by_matching_sections(Query::new("a ab"), item="a b"),
-    content=
+    content=(
       $|Some([(true, \"a\"), (false, \" \"), (true, \"b\")])
-    ,
+    ),
   )
 }

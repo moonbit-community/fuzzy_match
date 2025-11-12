@@ -63,7 +63,8 @@ pub fn[Item : StringLike] Query::split_by_matching_sections(
   }
 }
 
-///| fuzzy_search
+///|
+/// fuzzy_search
 ///   
 /// This implementation refers to 
 /// [Ocaml janestreet fuzzy_match](https://github.com/janestreet/fuzzy_match/blob/master/search/src/fuzzy_search.ml)

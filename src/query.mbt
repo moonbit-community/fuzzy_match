@@ -27,7 +27,7 @@ pub fn Query::new(query : String) -> Query {
 }
 
 ///|
-pub fn[Item : StringLike] split_by_matching_sections(
+pub fn[Item : StringLike] Query::split_by_matching_sections(
   self : Query,
   item~ : Item,
 ) -> Array[(Bool, @string.View)]? {
@@ -63,11 +63,12 @@ pub fn[Item : StringLike] split_by_matching_sections(
   }
 }
 
-///| fuzzy_search
+///|
+/// fuzzy_search
 ///   
 /// This implementation refers to 
 /// [Ocaml janestreet fuzzy_match](https://github.com/janestreet/fuzzy_match/blob/master/search/src/fuzzy_search.ml)
-pub fn[Item : StringLike + Compare] search(
+pub fn[Item : StringLike + Compare] Query::search(
   self : Query,
   items~ : Array[Item],
 ) -> Array[@string.View] {
@@ -85,7 +86,7 @@ pub fn[Item : StringLike + Compare] search(
 }
 
 ///|
-pub fn[Item : StringLike] matching_indices(
+pub fn[Item : StringLike] Query::matching_indices(
   self : Query,
   item~ : Item,
 ) -> Array[Int]? {
@@ -110,7 +111,7 @@ pub fn[Item : StringLike] matching_indices(
 }
 
 ///|
-pub fn[Item : StringLike] score(self : Query, item~ : Item) -> Int {
+pub fn[Item : StringLike] Query::score(self : Query, item~ : Item) -> Int {
   match (item.is_empty(), self.is_empty()) {
     (true, _) => 0
     (_, true) => 1

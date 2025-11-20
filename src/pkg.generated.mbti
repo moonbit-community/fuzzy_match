@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "illusory0x0/fuzzy_match"
+
+// Values
+fn[Pattern : StringLike, Text : StringLike] is_match(char_equal? : (Char, Char) -> Bool, pattern~ : Pattern, text~ : Text) -> Bool
+
+fn score_upper_bound(query_length~ : Int) -> Int
+
+// Errors
+
+// Types and methods
+type Query
+fn[Item : StringLike] Query::matching_indices(Self, item~ : Item) -> Array[Int]?
+fn Query::new(String) -> Self
+fn[Item : StringLike] Query::score(Self, item~ : Item) -> Int
+fn[Item : StringLike + Compare] Query::search(Self, items~ : Array[Item]) -> Array[StringView]
+fn[Item : StringLike] Query::split_by_matching_sections(Self, item~ : Item) -> Array[(Bool, StringView)]?
+
+// Type aliases
+
+// Traits
+pub(open) trait StringLike {
+  length(Self) -> Int
+  op_get(Self, Int) -> Char
+  is_empty(Self) -> Bool = _
+  to_string(Self) -> String
+  view(Self, Int, Int) -> StringView
+}
+impl StringLike for String
+impl StringLike for StringView
+

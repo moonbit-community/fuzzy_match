@@ -4,7 +4,7 @@ pub(open) trait StringLike {
   op_get(Self, Int) -> Char
   is_empty(Self) -> Bool = _
   to_string(Self) -> String
-  view(Self, Int, Int) -> @string.View
+  view(Self, Int, Int) -> StringView
 }
 
 ///|
@@ -33,21 +33,21 @@ pub impl StringLike for String with view(self, start, end) {
 }
 
 ///|
-pub impl StringLike for @string.View with length(self) {
+pub impl StringLike for StringView with length(self) {
   self.char_length()
 }
 
 ///|
-pub impl StringLike for @string.View with op_get(self, index) {
+pub impl StringLike for StringView with op_get(self, index) {
   self.get_char(index).unwrap()
 }
 
 ///|
-pub impl StringLike for @string.View with view(self, start, end) {
+pub impl StringLike for StringView with view(self, start, end) {
   self.view(start_offset=start, end_offset=end)
 }
 
 ///|
-pub impl StringLike for @string.View with to_string(self) {
+pub impl StringLike for StringView with to_string(self) {
   self.to_string()
 }

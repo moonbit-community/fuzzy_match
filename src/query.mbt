@@ -30,7 +30,7 @@ pub fn Query::new(query : String) -> Query {
 pub fn[Item : StringLike] Query::split_by_matching_sections(
   self : Query,
   item~ : Item,
-) -> Array[(Bool, @string.View)]? {
+) -> Array[(Bool, StringView)]? {
   match Query::matching_indices(self, item~) {
     None => None
     Some([]) => Some([(not_matching, item.view(0, item.length()))])
@@ -71,7 +71,7 @@ pub fn[Item : StringLike] Query::split_by_matching_sections(
 pub fn[Item : StringLike + Compare] Query::search(
   self : Query,
   items~ : Array[Item],
-) -> Array[@string.View] {
+) -> Array[StringView] {
   let items_by_score = items.filter_map(fn(item) {
     match Query::score(self, item~) {
       0 => None

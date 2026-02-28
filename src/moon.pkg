@@ -2,4 +2,4 @@ import {
   "moonbitlang/core/deque",
 }
 
-warnings = "-1-2-3-5-6-7-8"
+warnings = "-unused_value-unused_type_declaration-unused_type_variable-unused_constructor-unused_field-redundant_modifier"

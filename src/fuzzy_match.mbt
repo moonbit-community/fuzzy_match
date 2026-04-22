@@ -10,7 +10,7 @@ pub fn[Pattern : StringLike, Text : StringLike] is_match(
 ) -> Bool {
   let mut pattern_idx = 0
   let mut text_idx = 0
-  for {
+  for ;; {
     if pattern_idx == pattern.length() {
       break true
     }

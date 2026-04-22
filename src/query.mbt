@@ -15,7 +15,7 @@ pub fn Query::new(query : String) -> Query {
   let queries = query
     .split(" ")
     .filter_map(fn(s) {
-      if not(s.is_empty()) {
+      if !s.is_empty() {
         Some(s.to_string())
       } else {
         None

@@ -14,13 +14,7 @@ fn Query::is_empty(self : Query) -> Bool {
 pub fn Query::new(query : String) -> Query {
   let queries = query
     .split(" ")
-    .filter_map(fn(s) {
-      if !s.is_empty() {
-        Some(s.to_string())
-      } else {
-        None
-      }
-    })
+    .filter_map(fn(s) { if !s.is_empty() { Some(s.to_string()) } else { None } })
     .collect()
   let case_sensitive = query.iter().any(Char::is_ascii_uppercase)
   { queries, raw: query, case_sensitive }

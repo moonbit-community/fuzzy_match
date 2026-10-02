@@ -19,15 +19,15 @@ test "Query::score" {
 
 ///|
 test "matching_indices" {
-  inspect(
+  debug_inspect(
     Query::matching_indices(Query::new("abc"), item="a__abb____c_c"),
     content="Some([3, 4, 10])",
   )
-  inspect(
+  debug_inspect(
     Query::matching_indices(Query::new("no_match"), item="can't match this"),
     content="None",
   )
-  inspect(
+  debug_inspect(
     Query::matching_indices(Query::new("abc ab"), item="a__abb____c_c"),
     content="Some([3, 4, 10])",
   )
@@ -36,32 +36,49 @@ test "matching_indices" {
 ///|
 test "search" {
   let items = ["___abc___", "aBc", "Abc_defgh", "abc", "foof"]
-  inspect(
+  debug_inspect(
     Query::search(Query::new("abc"), items~),
     content=(
-      #|[aBc, abc, Abc_defgh, ___abc___]
+      #|[
+      #|  <StringView: "aBc">,
+      #|  <StringView: "abc">,
+      #|  <StringView: "Abc_defgh">,
+      #|  <StringView: "___abc___">,
+      #|]
     ),
   )
 }
 
 ///|
 test "split_by_matching_sections" {
-  inspect(
+  debug_inspect(
     Query::split_by_matching_sections(Query::new("foo"), item="foo bar baz"),
     content=(
-      #|Some([(true, foo), (false,  bar baz)])
+      #|Some([(true, <StringView: "foo">), (false, <StringView: " bar baz">)])
     ),
   )
-  inspect(
+  debug_inspect(
     Query::split_by_matching_sections(Query::new("abc"), item="____abc____"),
     content=(
-      #|Some([(false, ____), (true, abc), (false, ____)])
+      #|Some(
+      #|  [
+      #|    (false, <StringView: "____">),
+      #|    (true, <StringView: "abc">),
+      #|    (false, <StringView: "____">),
+      #|  ],
+      #|)
     ),
   )
-  inspect(
+  debug_inspect(
     Query::split_by_matching_sections(Query::new("a ab"), item="a b"),
     content=(
-      #|Some([(true, a), (false,  ), (true, b)])
+      #|Some(
+      #|  [
+      #|    (true, <StringView: "a">),
+      #|    (false, <StringView: " ">),
+      #|    (true, <StringView: "b">),
+      #|  ],
+      #|)
     ),
   )
 }

@@ -49,5 +49,5 @@ pub impl StringLike for StringView with fn view(self, start, end) {
 
 ///|
 pub impl StringLike for StringView with fn to_string(self) {
-  self.to_string()
+  self.to_owned()
 }

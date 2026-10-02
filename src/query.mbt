@@ -14,10 +14,10 @@ fn Query::is_empty(self : Query) -> Bool {
 pub fn Query::new(query : String) -> Query {
   let queries = query
     .split(" ")
-    .filter_map(fn(s) { if !s.is_empty() { Some(s.to_string()) } else { None } })
+    .filter_map(fn(s) { if !s.is_empty() { Some(s.to_owned()) } else { None } })
     .collect()
   let case_sensitive = query.iter().any(Char::is_ascii_uppercase)
-  { queries, raw: query, case_sensitive }
+  { queries, raw: query, case_sensitive, }
 }
 
 ///|
@@ -29,7 +29,7 @@ pub fn[Item : StringLike] Query::split_by_matching_sections(
     None => None
     Some([]) => Some([(not_matching, item.view(0, item.length()))])
     Some(matches) => {
-      let sections = @deque.new()
+      let sections = @deque.Deque([])
       fn add_section(matching, start, end_inclusive) {
         sections.push_back((matching, item.view(start, end_inclusive + 1)))
       }
@@ -69,13 +69,13 @@ pub fn[Item : StringLike + Compare] Query::search(
   let items_by_score = items.filter_map(fn(item) {
     match Query::score(self, item~) {
       0 => None
-      score => Some((score, item.length(), item))
+      score => Some((score, StringLike::length(item), item))
     }
   })
   items_by_score.sort()
   items_by_score.map(fn(t) {
     let item = t.2
-    item.view(0, item.length())
+    StringLike::view(item, 0, StringLike::length(item))
   })
 }
 
@@ -87,7 +87,7 @@ pub fn[Item : StringLike] Query::matching_indices(
   if self.is_empty() {
     Some([])
   } else {
-    let indices = self.queries.fold(init=Set::new(), fn(set, query) {
+    let indices = self.queries.fold(init=Set([]), fn(set, query) {
       fold_matching_indices_single_query(query, item~, init=set, f=fn(
         set,
         query,
@@ -110,7 +110,7 @@ pub fn[Item : StringLike] Query::score(self : Query, item~ : Item) -> Int {
     (true, _) => 0
     (_, true) => 1
     _ => {
-      let { queries, raw, case_sensitive } = self
+      let { queries, raw, case_sensitive, } = self
       let mut raw_score = 0
       let mut any_mismatch = false
       for query in queries {

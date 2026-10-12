@@ -83,7 +83,7 @@ pub fn[Item : StringLike + Compare] Query::search(
 pub fn[Item : StringLike] Query::matching_indices(
   self : Query,
   item~ : Item,
-) -> Array[Int]? {
+) -> Array[Int32]? {
   if self.is_empty() {
     Some([])
   } else {
@@ -105,7 +105,7 @@ pub fn[Item : StringLike] Query::matching_indices(
 }
 
 ///|
-pub fn[Item : StringLike] Query::score(self : Query, item~ : Item) -> Int {
+pub fn[Item : StringLike] Query::score(self : Query, item~ : Item) -> Int32 {
   match (item.is_empty(), self.is_empty()) {
     (true, _) => 0
     (_, true) => 1
@@ -130,7 +130,7 @@ pub fn[Item : StringLike] Query::score(self : Query, item~ : Item) -> Int {
 }
 
 ///|
-pub fn score_upper_bound(query_length~ : Int) -> Int {
+pub fn score_upper_bound(query_length~ : Int32) -> Int32 {
   (start_of_item_bonus + start_of_word_bonus) *
   first_char_multiplier *
   query_length +

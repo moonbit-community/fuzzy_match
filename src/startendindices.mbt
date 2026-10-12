@@ -1,8 +1,8 @@
 ///|
 priv struct StartEndIndices {
   mut found : Bool
-  mut start_idx : Int
-  mut end_idx : Int
+  mut start_idx : Int32
+  mut end_idx : Int32
 }
 
 ///|

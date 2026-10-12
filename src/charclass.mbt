@@ -9,9 +9,9 @@ priv enum CharClass {
 ///|
 fn CharClass::from_char(ch : Char) -> CharClass {
   match ch {
-    'A'..='Z' => Upper
-    'a'..='z' => Lower
-    '0'..='9' => Digit
+    'A'..<='Z' => Upper
+    'a'..<='z' => Lower
+    '0'..<='9' => Digit
     _ => NonWord
   }
 }

@@ -1,10 +1,10 @@
 ///|
 pub(open) trait StringLike {
-  fn length(Self) -> Int
-  fn op_get(Self, Int) -> Char
+  fn length(Self) -> Int32
+  fn op_get(Self, Int32) -> Char
   fn is_empty(Self) -> Bool = _
   fn to_string(Self) -> String
-  fn view(Self, Int, Int) -> StringView
+  fn view(Self, Int32, Int32) -> StringView
 }
 
 ///|

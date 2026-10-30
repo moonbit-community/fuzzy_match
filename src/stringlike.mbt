@@ -29,7 +29,11 @@ impl StringLike with fn is_empty(self) -> Bool {
 
 ///|
 pub impl StringLike for String with fn view(self, start, end) {
-  self.view(start_offset=start, end_offset=end)
+  // Preserve the existing UTF-16 offset contract, including strict bounds.
+  guard 0 <= start && start <= end && end <= self.length() else {
+    abort("Invalid index for View")
+  }
+  self.unsafe_view(start~, end~)
 }
 
 ///|
@@ -44,7 +48,11 @@ pub impl StringLike for StringView with fn op_get(self, index) {
 
 ///|
 pub impl StringLike for StringView with fn view(self, start, end) {
-  self.view(start_offset=start, end_offset=end)
+  // Preserve the existing UTF-16 offset contract, including strict bounds.
+  guard 0 <= start && start <= end && end <= self.length() else {
+    abort("Invalid index for View")
+  }
+  self.unsafe_view(start~, end~)
 }
 
 ///|

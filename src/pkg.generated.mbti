@@ -20,12 +20,11 @@ pub fn[Item : StringLike] Query::split_by_matching_sections(Self, item~ : Item) 
 
 // Traits
 pub(open) trait StringLike {
-  length(Self) -> Int
-  op_get(Self, Int) -> Char
-  is_empty(Self) -> Bool = _
-  to_string(Self) -> String
-  view(Self, Int, Int) -> StringView
+  fn length(Self) -> Int
+  fn op_get(Self, Int) -> Char
+  fn is_empty(Self) -> Bool = _
+  fn to_string(Self) -> String
+  fn view(Self, Int, Int) -> StringView
 }
 pub impl StringLike for String
 pub impl StringLike for StringView
-

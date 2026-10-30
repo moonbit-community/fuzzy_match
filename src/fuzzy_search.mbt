@@ -37,9 +37,9 @@ fn[A, Query : StringLike, Item : StringLike] fold_matching_indices_single_query(
   query : Query,
   item~ : Item,
   init~ : A,
-  f~ : (A, Int) -> A,
+  f~ : (A, Int32) -> A,
 ) -> A {
-  let { start_idx, end_idx, found } = find_start_end_indices(query~, item~)
+  let { start_idx, end_idx, found, } = find_start_end_indices(query~, item~)
   let mut acc = init
   if found {
     let mut query_idx = 0
@@ -58,9 +58,9 @@ fn[Query : StringLike, Item : StringLike] score_single_query(
   query : Query,
   item~ : Item,
   case_sensitive~ : Bool,
-) -> Int {
-  let { found, start_idx, end_idx } = find_start_end_indices(query~, item~)
-  if not(found) {
+) -> Int32 {
+  let { found, start_idx, end_idx, } = find_start_end_indices(query~, item~)
+  if !found {
     0
   } else {
     let start_char_class = if start_idx == 0 {
@@ -96,7 +96,7 @@ fn[Query : StringLike, Item : StringLike] score_single_query(
             max(with_start_of_item_bonus, prev_char_score)
           }
           let with_wrong_case_penalty = if item_char == query_char ||
-            not(case_sensitive) {
+            !case_sensitive {
             with_consecutive_bonus
           } else {
             with_consecutive_bonus - wrong_case_penalty
@@ -113,7 +113,7 @@ fn[Query : StringLike, Item : StringLike] score_single_query(
         prev_char_score = this_char_score
         in_gap = false
       } else {
-        let this_char_score = if not(in_gap) {
+        let this_char_score = if !in_gap {
           -continue_gap_penalty
         } else {
           -start_gap_penalty

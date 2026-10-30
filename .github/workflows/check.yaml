@@ -83,9 +83,9 @@ jobs:
           moon test --target all,native
           moon test --target all,native --release
 
-      - name: moon test --doc
-        run: |
-          moon test --doc
+      # Documentation tests are included in the default test suite.
+      - name: Test library and documentation
+        run: moon test
 
   moon-json-format-check:
     runs-on: ubuntu-latest

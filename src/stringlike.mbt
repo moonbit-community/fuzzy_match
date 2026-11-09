@@ -48,7 +48,7 @@ impl StringLike with fn is_empty(self) -> Bool {
 
 ///|
 pub impl StringLike for String with fn view(self, start, end) {
-  self.view(start_offset=start, end_offset=end)
+  self.exact_view(start~, end~)
 }
 
 ///|
@@ -63,7 +63,7 @@ pub impl StringLike for StringView with fn op_get(self, index) {
 
 ///|
 pub impl StringLike for StringView with fn view(self, start, end) {
-  self.view(start_offset=start, end_offset=end)
+  self.exact_view(start~, end~)
 }
 
 ///|

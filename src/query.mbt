@@ -16,7 +16,7 @@ pub fn Query::new(query : String) -> Query {
     .split(" ")
     .filter_map(fn(s) { if !s.is_empty() { Some(s.to_owned()) } else { None } })
     .collect()
-  let case_sensitive = query.iter().any(Char::is_ascii_uppercase)
+  let case_sensitive = query.any(Char::is_ascii_uppercase)
   { queries, raw: query, case_sensitive, }
 }
 
@@ -40,14 +40,14 @@ pub fn[Item : StringLike] Query::split_by_matching_sections(
       }
       let mut matching_range_start = first
       let mut matching_range_end = first
-      matches.each(fn(idx) {
+      for idx in matches {
         if idx > matching_range_end + 1 {
           add_section(matching, matching_range_start, matching_range_end)
           add_section(not_matching, matching_range_end + 1, idx - 1)
           matching_range_start = idx
         }
         matching_range_end = idx
-      })
+      }
       add_section(matching, matching_range_start, matching_range_end)
       if matching_range_end < item.length() - 1 {
         add_section(not_matching, matching_range_end + 1, item.length() - 1)

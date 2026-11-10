@@ -4,15 +4,15 @@ package "moonbit-community/fuzzy_match"
 // Values
 pub fn[Pattern : StringLike, Text : StringLike] is_match(char_equal? : (Char, Char) -> Bool, pattern~ : Pattern, text~ : Text) -> Bool
 
-pub fn score_upper_bound(query_length~ : Int) -> Int
+pub fn score_upper_bound(query_length~ : Int32) -> Int32
 
 // Errors
 
 // Types and methods
 type Query
-pub fn[Item : StringLike] Query::matching_indices(Self, item~ : Item) -> Array[Int]?
+pub fn[Item : StringLike] Query::matching_indices(Self, item~ : Item) -> Array[Int32]?
 pub fn Query::new(String) -> Self
-pub fn[Item : StringLike] Query::score(Self, item~ : Item) -> Int
+pub fn[Item : StringLike] Query::score(Self, item~ : Item) -> Int32
 pub fn[Item : StringLike + Compare] Query::search(Self, items~ : Array[Item]) -> Array[StringView]
 pub fn[Item : StringLike] Query::split_by_matching_sections(Self, item~ : Item) -> Array[(Bool, StringView)]?
 
@@ -20,11 +20,11 @@ pub fn[Item : StringLike] Query::split_by_matching_sections(Self, item~ : Item) 
 
 // Traits
 pub(open) trait StringLike {
-  fn length(Self) -> Int
-  fn op_get(Self, Int) -> Char
+  fn length(Self) -> Int32
+  fn op_get(Self, Int32) -> Char
   fn is_empty(Self) -> Bool = _
   fn to_string(Self) -> String
-  fn view(Self, Int, Int) -> StringView
+  fn view(Self, Int32, Int32) -> StringView
 }
 pub impl StringLike for String
 pub impl StringLike for StringView
